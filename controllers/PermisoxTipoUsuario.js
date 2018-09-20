@@ -119,7 +119,6 @@ async function saveSubModulo(req, res) {
       return f.ID == req.body.IDMenu;
     });
 
-    console.log(currentModulo);
     currentModulo[0].SubModulos.push({ ID: req.body.IDSubMenu });
 
     currentTipoUsuario.save(err => {
@@ -128,7 +127,7 @@ async function saveSubModulo(req, res) {
         res.status(500).send({ message: `Error al guardar el sub-modulo.` });
       }
       console.log(`Sub-Modulo guardado correctamente.`);
-      res.status(200).send({ message: `Modulo guardado correctamente.` });
+      res.status(200).send({ message: `Sub-Modulo guardado correctamente.` });
     });
   }
 }
