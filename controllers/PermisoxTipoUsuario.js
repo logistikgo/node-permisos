@@ -107,10 +107,21 @@ async function saveSubModulo(req, res) {
       res.status(200).send({ message: `Sub-Modulo guardado correctamente.` });
     });
   } else {
+    let verifyModulo = currentTipoUsuario.Modulos.filter(f => {
+      return f.ID == req.body.IDMenu;
+    });
+
+    if (verifyModulo.length == 0) {
+      currentTipoUsuario.Modulos.push({ ID: req.body.IDMenu });
+    }
+
     let currentModulo = currentTipoUsuario.Modulos.filter(f => {
       return f.ID == req.body.IDMenu;
     });
+
+    console.log(currentModulo);
     currentModulo[0].SubModulos.push({ ID: req.body.IDSubMenu });
+
     currentTipoUsuario.save(err => {
       if (err) {
         console.log(`Error al guardar el sub-modulo.`);
