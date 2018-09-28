@@ -48,23 +48,23 @@ async function saveModulo(req, res) {
     permiso.Modulos.push({ ID: req.body.IDMenu });
     permiso.save(err => {
       if (err) {
-        console.log("Error al guardar el modulo.");
-        res.status(500).send({ message: `Error al guardar el modulo.` });
+        console.log("Error al bloquear el modulo.");
+        res.status(500).send({ message: `Error al bloquear el modulo.` });
       }
 
-      console.log("Modulo guardado correctamente.");
-      res.status(200).send({ message: `Modulo guardado correctamente.` });
+      console.log("Modulo bloqueado correctamente.");
+      res.status(200).send({ message: `Modulo bloqueado correctamente.` });
     });
   } else {
     currentTipoUsuario.Modulos.push({ ID: req.body.IDMenu });
     currentTipoUsuario.save(err => {
       if (err) {
-        console.log(`Error al guardad el modulo.`);
-        res.status(500).send({ message: `Error al guardar el modulo.` });
+        console.log(`Error al bloquear el modulo.`);
+        res.status(500).send({ message: `Error al bloquear el modulo.` });
       }
 
-      console.log(`Modulo guardado correctamente.`);
-      res.status(200).send({ message: `Modulo guardado correctamente.` });
+      console.log(`Modulo bloqueado correctamente.`);
+      res.status(200).send({ message: `Modulo bloqueado correctamente.` });
     });
   }
 }
@@ -75,12 +75,12 @@ async function deleteModulo(req, res) {
     { $pull: { Modulos: { ID: { $eq: req.body.IDMenu } } } },
     (err, item) => {
       if (err) {
-        console.log("Error al eliminar el modulo");
-        res.status(500).send({ message: `Error al eliminar el modulo.` });
+        console.log("Error al desbloquear el modulo");
+        res.status(500).send({ message: `Error al desbloquear el modulo.` });
       }
 
-      console.log("Modulo eliminado correctamente.");
-      res.status(200).send({ message: `Modulo eliminado correctamente.` });
+      console.log("Modulo bloqueado correctamente.");
+      res.status(200).send({ message: `Modulo bloqueado correctamente.` });
     }
   );
 }
@@ -100,11 +100,11 @@ async function saveSubModulo(req, res) {
     currentModulo[0].SubModulos.push({ ID: req.body.IDSubMenu });
     permiso.save(err => {
       if (err) {
-        console.log("Error al guardar el sub-modulo.");
-        res.status(500).send({ message: `Error al guardar el sub-modulo.` });
+        console.log("Error al bloquear el sub-modulo.");
+        res.status(500).send({ message: `Error al bloquear el sub-modulo.` });
       }
-      console.log("Sub-Modulo guardado correctamente.");
-      res.status(200).send({ message: `Sub-Modulo guardado correctamente.` });
+      console.log("Sub-Modulo bloqueado correctamente.");
+      res.status(200).send({ message: `Sub-Modulo bloqueado correctamente.` });
     });
   } else {
     let verifyModulo = currentTipoUsuario.Modulos.filter(f => {
@@ -123,11 +123,11 @@ async function saveSubModulo(req, res) {
 
     currentTipoUsuario.save(err => {
       if (err) {
-        console.log(`Error al guardar el sub-modulo.`);
-        res.status(500).send({ message: `Error al guardar el sub-modulo.` });
+        console.log(`Error al bloquear el sub-modulo.`);
+        res.status(500).send({ message: `Error al bloquear el sub-modulo.` });
       }
-      console.log(`Sub-Modulo guardado correctamente.`);
-      res.status(200).send({ message: `Sub-Modulo guardado correctamente.` });
+      console.log(`Sub-Modulo bloqueado correctamente.`);
+      res.status(200).send({ message: `Sub-Modulo bloqueado correctamente.` });
     });
   }
 }
@@ -147,12 +147,16 @@ async function deleteSubModulo(req, res) {
     { arrayFilters: [{ "menu.ID": req.body.IDMenu }], multi: true },
     (err, item) => {
       if (err) {
-        console.log("Error al eliminar el sub-modulo.");
-        res.status(500).send({ message: `Error al eliminar el sub-modulo.` });
+        console.log("Error al desbloquear el sub-modulo.");
+        res
+          .status(500)
+          .send({ message: `Error al desbloquear el sub-modulo.` });
       }
 
-      console.log("Sub-Modulo eliminado correctamente.");
-      res.status(200).send({ message: `Sub-Modulo eliminado correctamente.` });
+      console.log("Sub-Modulo desbloqueado correctamente.");
+      res
+        .status(200)
+        .send({ message: `Sub-Modulo desbloqueado correctamente.` });
     }
   );
 }
