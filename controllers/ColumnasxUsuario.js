@@ -1,4 +1,4 @@
-'use strict'
+/*'use strict'
 
 const ColumnasxUsuario = require('../models/ColumnasxUsuario');
 
@@ -23,4 +23,30 @@ function getColumnasByIDUsuario(req,res) {
 
 module.exports = {
 	getColumnasByIDUsuario,
+}*/
+
+'use strict'
+
+const columnasxusuario = require('../models/ColumnasxUsuario');
+
+function _get(req, res) {
+    let idUsuario = parseInt(req.query.idUsuario);
+    let idTable = req.query.idTable;
+
+    columnasxusuario.find({idUsuario: idUsuario, idTabla: idTable})
+        .then((conf) => {
+            conf = conf.sort((a,b)=>{
+                a.indice - b.indice
+            });
+            res.status(200).send(conf);
+        })
+        .catch((error) => {
+            return res.status(500).send({
+                message: "Error al realizar la peticion"
+            });
+        });
+}
+
+module.exports = {
+    _get
 }

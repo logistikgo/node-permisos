@@ -35,10 +35,11 @@ app.get(
   "/api/columnasxtipousuario/:idTipoUsuario",
   ColumnasxTipoUsuario.getColumnasByIDTipoUsuario
 );
-app.get(
+
+/*app.get(
   "/api/columnasxusuario/:idUsuario",
   ColumnasxUsuario.getColumnasByIDUsuario
-);
+);*/
 
 app.get(
   "/api/elementosxtipousuario/:idTipoUsuario",
@@ -62,5 +63,7 @@ app.post("/api/modulos", PermisoController.saveModulo);
 app.delete("/api/modulos/:idTipoUsuario", PermisoController.deleteModulo);
 app.post("/api/submodulos", PermisoController.saveSubModulo);
 app.delete("/api/submodulos/:idTipoUsuario", PermisoController.deleteSubModulo);
+
+app.get("/api/columnasxusuario/", ColumnasxUsuario._get);
 
 module.exports = app;
