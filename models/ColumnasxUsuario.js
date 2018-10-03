@@ -24,6 +24,6 @@ const columnasxusuario = Schema({
         indice: Number
     }],
 },
-{ collection: 'ColumnasxUsuario' });
+{ collection: 'ColumnasxUsuarios' });
 
-module.exports = mongoose.model('ColumnasxUsuario', columnasxusuario);
+module.exports = mongoose.model('ColumnasxUsuarios', columnasxusuario);
